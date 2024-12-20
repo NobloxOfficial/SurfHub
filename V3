@@ -93,6 +93,20 @@ local Window = Rayfield:CreateWindow({
     end,
  })
 
+local Button = OtherTab:CreateButton({
+    Name = "UNC Test",
+    Callback = function()
+        loadstring(game:HttpGet("https://github.com/ltseverydayyou/uuuuuuu/blob/main/UNC%20test?raw=true"))()
+    end,
+ })
+
+local Button = OtherTab:CreateButton({
+    Name = "Chat Bypass",
+    Callback = function()
+        loadstring(game:HttpGet("https://raw.githubusercontent.com/NobloxOfficial/chat-bypasser-surf/refs/heads/main/v3"))()
+    end,
+ })
+
 
  local Slider = OtherTab:CreateSlider({
     Name = "Walkspeed",
