@@ -1,0 +1,107 @@
+local Rayfield = loadstring(game:HttpGet('https://sirius.menu/rayfield'))()
+
+local Window = Rayfield:CreateWindow({
+    Name = "🔫 Rivals Silent Aim 🔫",
+    Icon = 0, -- Icon in Topbar. Can use Lucide Icons (string) or Roblox Image (number). 0 to use no icon (default).
+    LoadingTitle = "SurfXploits",
+    LoadingSubtitle = "Developed by surfplex",
+    Theme = "Default", -- Check https://docs.sirius.menu/rayfield/configuration/themes
+ 
+    DisableRayfieldPrompts = false,
+    DisableBuildWarnings = false, -- Prevents Rayfield from warning when the script has a version mismatch with the interface
+ 
+    ConfigurationSaving = {
+       Enabled = true,
+       FolderName = nil, -- Create a custom folder for your hub/game
+       FileName = "SurfHub"
+    },
+ 
+    Discord = {
+       Enabled = true, -- Prompt the user to join your Discord server if their executor supports it
+       Invite = "tKE7hDXYUF", -- The Discord invite code, do not include discord.gg/. E.g. discord.gg/ABCD would be ABCD
+       RememberJoins = true -- Set this to false to make them join the discord every time they load it up
+    },
+ 
+    KeySystem = true, -- Set this to true to use our key system
+    KeySettings = {
+       Title = "Rivals Silent Aim | Key",
+       Subtitle = "Link In Discord Server",
+       Note = "Join Server From Misc Tab", -- Use this to tell the user how to get a key
+       FileName = "SurfHubKey", -- It is recommended to use something unique as other scripts using Rayfield may overwrite your key file
+       SaveKey = false, -- The user's key will be saved, but if you change the key, they will be unable to use your script
+       GrabKeyFromSite = true, -- If this is true, set Key below to the RAW site you would like Rayfield to get the key from
+       Key = {"https://pastebin.com/raw/SMVBy9gt"} -- List of keys that will be accepted by the system, can be RAW file links (pastebin, github etc) or simple strings ("hello","key22")
+    }
+ })
+
+ local MainTab = Window:CreateTab("🔫 Silent Aim", nil) -- Title, Image
+ local MainSection = MainTab:CreateSection("Section Example")
+
+ Rayfield:Notify({
+    Title = "SurfHub Successfully Loaded!",
+    Content = "Rivals Silent Aim Script",
+    Duration = 4,
+    Image = nil,
+ })
+
+ local Button = MainTab:CreateButton({
+    Name = "Silent Aim",
+    Callback = function()
+        loadstring(game:HttpGet("https://raw.githubusercontent.com/NobloxOfficial/silentaim/refs/heads/main/release"))()
+    end,
+ })
+
+ local aimRange = 50 -- Default value for the silent aim range
+
+ -- Create the slider
+ local Slider = MainTab:CreateSlider({
+     Name = "Silent Aim Range",
+     Range = {10, 100}, -- Minimum and maximum values
+     Increment = 1, -- Step size
+     Suffix = "Units",
+     CurrentValue = aimRange, -- Default slider value
+     Flag = "SilentAimRangeSlider", -- Unique identifier for the slider
+     Callback = function(value)
+         aimRange = value -- Update the aim range dynamically
+     end,
+ })
+ 
+ 
+ 
+
+ local EspTab = Window:CreateTab("🧱 ESP", nil) 
+
+ local Button = EspTab:CreateButton({
+    Name = "ESP",
+    Callback = function()
+        loadstring(game:HttpGet("https://raw.githubusercontent.com/NobloxOfficial/esp/refs/heads/main/esp"))()
+    end,
+ })
+
+ local OtherTab = Window:CreateTab("🎲 Misc", nil)
+ 
+ 
+ local Slider = OtherTab:CreateSlider({
+    Name = "Jump Power",
+    Range = {0, 200},
+    Increment = 10,
+    Suffix = "Jump Power",
+    CurrentValue = 50,
+    Flag = "Slider1", -- A flag is the identifier for the configuration file, make sure every element has a different flag if you're using configuration saving to ensure no overlaps
+    Callback = function(Value)
+        game.Players.LocalPlayer.Character.Humanoid.JumpPower = (Value)
+    end,
+ })
+
+
+ local Slider = OtherTab:CreateSlider({
+    Name = "Walkspeed",
+    Range = {0, 500},
+    Increment = 10,
+    Suffix = "Speed",
+    CurrentValue = 16,
+    Flag = "Slider1", -- A flag is the identifier for the configuration file, make sure every element has a different flag if you're using configuration saving to ensure no overlaps
+    Callback = function(Value)
+    game.Players.LocalPlayer.Character.Humanoid.WalkSpeed = (Value)
+    end,
+ })
